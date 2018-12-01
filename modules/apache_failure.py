@@ -15,17 +15,18 @@ class CustomModule(Module):
             "/var/log/apache2/error.log", "now-2m", "now")
         if results:
             print("[+] Generando una alerta")
-            self.create_alert(self.alertgen())
+            alert = self.alertgen(results)
+            self.create_alert(alert)
 
-    def alertgen(self):
+    def alertgen(self, data=None):
+        hostname = data['hits'][0]['_source']['beat'].get('hostname', '')
         alert = {
             "@datetime": ElasticSearcher.parseDatetimeToEpoch(str(datetime.now())),
-            "id_external": "keywork",
-            "id_user": "keyword",
-            "type": "keyword",
+            "id_external": hostname,
+            "type": "disponibility",
             "status": 0,
             "criticity": 0,
-            "description": "apache is down",
+            "description": "Apache is down.",
             "events": [],
         }
         return alert
