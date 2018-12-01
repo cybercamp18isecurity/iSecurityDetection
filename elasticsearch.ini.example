@@ -1,6 +1,6 @@
 
 [elasticsearch]
 
-host=35.178.182.30
+host=xxx.xxx.xxx.xxx
 port=9200
 index=filebeat-*
