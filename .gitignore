@@ -6,3 +6,4 @@ elasticsearch.ini
 venv
 .vscode
 src/*
+pusher.ini

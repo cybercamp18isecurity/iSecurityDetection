@@ -1,3 +1,4 @@
+lxml==4.2.5
 -e git+https://github.com/cybercamp18isecurity/elasticsearch_sdk.git@3ee39c4cf08f30f30efa9d51a619146d05bc1aee#egg=elasticsearch_sdk
-pandas
-lxml
+pandas==0.23.4
+pusher-push-notifications==1.0.1
