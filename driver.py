@@ -48,7 +48,7 @@ def instantiate_module(module_path):
         m = importlib.import_module(module_path)
         return m.CustomModule()
     except ImportError as error:
-        logging.error('Error importing the module %s' % module_path)
+        logging.exception('Error importing the module %s' % module_path)
         return None
 
 
@@ -69,6 +69,7 @@ def main():
 
         root = tree.getroot()
         modules = modules_management(modules, root.getchildren())
+        print(modules)
 
         # Execute the modules based on time
         for key in list(modules):
@@ -80,7 +81,7 @@ def main():
                     if custom_module:
                         custom_module.run()
                 except:
-                    logging.error("failed running %s module" % key)
+                    logging.exception("failed running %s module" % key)
 
 
 if __name__ == "__main__":
