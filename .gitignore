@@ -4,3 +4,4 @@
 elasticsearch.ini
 *~
 __pycache__/*
+src/*
