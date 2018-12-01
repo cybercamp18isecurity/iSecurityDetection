@@ -8,7 +8,9 @@ class CustomModule(Module):
     EVENTS = [40962, 53504, 40961, 4672, 4624, 400, 600]
 
     def run(self):
-        """Esta funcion localiza logs cada 2 minutos y comprueba si esta caido."""
+        """Esta funcion localiza los eventos generados por los hosts windows y 
+        realiza una relacion en la que si se han ejecutado un conjunto de eventos determinado
+        en los ultimos 15 minutos, se considera un potencial uac bypass"""
 
         print("[+] Comprobando los logs del servidor...")
 
