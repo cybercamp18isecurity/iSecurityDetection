@@ -33,6 +33,31 @@ class Module:
 
         return self.elk_controler.make_query(query)
 
+    def query_windows_events(self, time_gte, time_lt):
+        query = {
+            "query": {
+                "bool": {
+                    "must": [
+                        {
+                            "term": {
+                                "osquery.result.name": "pack_windows-attacks-isecurity_windows_events"
+                            }
+                        },
+                        {
+                            "range": {
+                                "@timestamp": {
+                                    "gte": time_gte,
+                                    "lt": time_lt
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+
+        return self.elk_controler.make_query(query)
+
     def create_alert(self, data):
         self.elk_controler.create_document(
             "", data, index="isecurity_datamodel-alerts")

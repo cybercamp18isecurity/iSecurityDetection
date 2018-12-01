@@ -23,8 +23,7 @@ class CustomModule(Module):
     DATASET = "datasets/xssdataset.csv"
 
     def run(self):
-        """Esta funcion localiza logs cada 2 minutos y comprueba si esta caido
-        el servidor de aplicacion apache2"""
+        """Esta funcion localiza logs cada 2 minutos y comprueba las urls."""
 
         print("[+] Comprobando los logs del servidor...")
 
