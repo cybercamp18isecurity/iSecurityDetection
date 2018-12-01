@@ -3,5 +3,6 @@
 *.log
 elasticsearch.ini
 *~
-__pycache__/*
+venv
+.vscode
 src/*
