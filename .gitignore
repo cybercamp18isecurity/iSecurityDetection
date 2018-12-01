@@ -3,3 +3,4 @@
 *.log
 elasticsearch.ini
 *~
+__pycache__/*
