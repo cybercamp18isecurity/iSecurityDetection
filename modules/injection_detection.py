@@ -7,7 +7,7 @@ from urllib.parse import quote_plus
 
 
 class CustomModule(Module):
-    """ Esta clase detecta inyecciones de codigo en parametros de urls 
+    """ Esta clase detecta inyecciones de codigo en parametros de urls
     de manera generica basandose en el conjunto de datos que se le proporciona.
     Para ello, realiza un url encode sobre el conjunto de datos que debe estar
     formado por una lista de payloads de la amenza que se desea detectar, despues
@@ -17,7 +17,7 @@ class CustomModule(Module):
     Actualmente testeado con:
     - XSS
     - SQLi
-    - Path Traversal 
+    - Path Traversal
     """
 
     DATASET = "datasets/xssdataset.csv"
@@ -38,7 +38,7 @@ class CustomModule(Module):
                 print(params)
                 if self.is_injection(params):
                     print("[+] Generando una alerta")
-                    self.create_alert(self.alertgen())
+                    self.create_alert(self.alertgen(result['_source']))
 
     def is_injection(self, params):
         df = pd.read_csv(self.DATASET)
@@ -69,11 +69,11 @@ class CustomModule(Module):
         return SequenceMatcher(None, a, b).ratio()
 
     def alertgen(self, data=None):
+        hostname = data["beat"].get('hostname','')
         alert = {
             "@datetime": ElasticSearcher.parseDatetimeToEpoch(str(datetime.now())),
-            "id_external": "keywork",
-            "id_user": "keyword",
-            "type": "keyword",
+            "id_external": hostname,
+            "type": "intrussion",
             "status": 0,
             "criticity": 0,
             "description": "Possible injection detected",
